@@ -5,7 +5,7 @@ import java.awt.*;
 abstract public class Bebida {
     private int numSerie;
     private int x, y, ancho, largo;
-    private Color color;
+   
     
     public Bebida(int numSerie, int x, int y, Color color){
         this.x = x; this.y = y;
