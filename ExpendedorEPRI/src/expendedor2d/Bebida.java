@@ -4,13 +4,13 @@ import java.awt.*;
 
 abstract public class Bebida {
     private int numSerie;
-    private int x, y, ancho, largo;
+    private int x, y, ancho, largo;   //HICE UN CAMBIOOOO
    
     
     public Bebida(int numSerie, int x, int y, Color color){
         this.x = x; this.y = y;
         this.numSerie = numSerie;
-        this.color = color;
+       
         this.ancho = 26; this.largo = 10;
     }
     public int getSerie(){
