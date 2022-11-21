@@ -5,12 +5,12 @@ import java.awt.*;
 abstract public class Bebida {
     private int numSerie;
     private int x, y, ancho, largo;
-    private Color color;
+      //Hice cambios
     
     public Bebida(int numSerie, int x, int y, Color color){
         this.x = x; this.y = y;
         this.numSerie = numSerie;
-        this.color = color;
+    
         this.ancho = 26; this.largo = 10;
     }
     public int getSerie(){
@@ -19,7 +19,7 @@ abstract public class Bebida {
     public abstract String beber();
 
     public void paint(Graphics g) {
-        g.setColor(color);
+     
         g.drawRect(x, y, ancho, largo);
         g.drawString(""+numSerie, x+ancho/7, y+largo);
     }
