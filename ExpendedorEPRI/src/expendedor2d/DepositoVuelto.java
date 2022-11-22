@@ -3,56 +3,62 @@ package expendedor2d;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import java.util.Random;
+import java.lang.Math;
 
 public class DepositoVuelto {
-    private int x,  y, largo, ancho;
-    private ArrayList <Moneda> monto;
+    public ArrayList <Moneda> ALvuelto;
     
-    public DepositoVuelto(int x, int y, int ancho, int largo){
-        this.x=x;this.y=y;
-        this.ancho = ancho; this.largo = largo;
-        monto = new ArrayList <Moneda>();
-    }
-    public void paint(Graphics g){
-        g.setColor(Color.magenta);
-        g.fillRect(x, y, ancho, largo);
-        for(int i=0; i<monto.size(); i++){
-            if(monto.get(i) != null)
-            monto.get(i).paint(g, x+i*3, y+2);
-        }
+    public DepositoVuelto(){
+        
+        ALvuelto = new ArrayList <>();
+        
     }
     
-    public void addMoneda(Moneda m, int precioBebida){
-        for(int i=precioBebida; i>0; i--){
-            monto.add(m);                
+    public void paint(Graphics g){      //no funciona
+        
+        System.out.println("SE LLAMO");
+       for(int i=0; i<ALvuelto.size() ; i++  ){
+       (ALvuelto.get(i)).paint(g);
+           
+       
+       
+       
+       }
+        
+        
+    }
+    public void Devolucion(Moneda money){
+        ALvuelto.add(money);
+    }
+    public void BotarMoneda(){  System.out.println("botarmonea");
+         
+    
+         ALvuelto.add(new Moneda100((int) (272 + Math.random()*80), (int) (310+Math.random()*80)));  //aqui setearemos moneas
+         System.out.println("");
+         
+    }
+    
+    public Moneda sacarMoneda(){
+        if(ALvuelto.isEmpty()){
+            return null;                              //SACAR MONEA
+        }else{                                       
+            return ALvuelto.remove(0);
         }
     }
     
-    public Moneda getMoneda(){
-        if(monto.size() == 0){
-            return null;
-        }else{
-            return monto.remove(0);
-        }
+    public boolean noqueda(){
+        if(ALvuelto.isEmpty()){
+            return true;                              //SACAR MONEA
+        }else {return false;}                                       
+            
+        
     }
-    public void setXY(int x, int y){
-        this.x=x;this.y=y;        
-    }
-    public void setXYMonedas(){
-        for(int i=0; i>monto.size(); i++){
-            monto.get(i).setXY(this.x+i*3, this.y+2);
-        }
-    }
-    public int getX(){
-        return this.x;
-    }
-    public int getY(){
-        return this.y;
-    }
-    public int getLargo(){
-        return this.largo;
-    }
-    public int getAncho(){
-        return this.ancho;
-    }
+    
+    
+    
+    
+   
 }
