@@ -30,7 +30,7 @@ public class PanelCentro extends JPanel {
         while((capacidad<0)){
         capacidad = Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad de bebidas que tendrá la maquina"));
         }
-         ImageIcon heinserberg = new ImageIcon("C:\\Users\\eparr\\3D Objects\\precio.png");
+         ImageIcon heinserberg = new ImageIcon("src/img/precio.png");
          
          
          mediaPlayer.play();
@@ -140,7 +140,7 @@ public class PanelCentro extends JPanel {
     
     JFXPanel bac = new JFXPanel();
       
-        pon = new File("C:\\Users\\eparr\\Desktop\\BBTERLQ.wav").toURI().toString();
+        pon = new File("src/img/BBTERLQ.wav").toURI().toString();
         son = new Media(pon);
         
                 

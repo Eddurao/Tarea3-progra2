@@ -31,6 +31,7 @@ public class DepositoVuelto {
         
     }
     public void Devolucion(Moneda money){
+        money.x = (int) (272 + Math.random()*80); money.y = (int) (310+Math.random()*80);
         ALvuelto.add(money);
     }
     public void BotarMoneda(){  System.out.println("botarmonea");

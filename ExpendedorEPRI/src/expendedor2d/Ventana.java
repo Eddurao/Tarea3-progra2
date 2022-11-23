@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Locale;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
@@ -27,7 +28,9 @@ public class Ventana extends JFrame implements ActionListener {
     String tet;
     PanelCentro pc;
     int BB;
-    boolean CS;         private final JFXPanel TT = new JFXPanel(); JPanel pantalla;              
+    boolean CS;         private final JFXPanel TT = new JFXPanel(); JPanel pantalla;   
+                        private final JFXPanel TTS = new JFXPanel(); JPanel pantallaS; 
+                        private final JFXPanel TTCO = new JFXPanel(); JPanel pantallaCO; 
     public Ventana(){
                                           // TT= new JFXPanel(); //en final poner
                                           
@@ -36,7 +39,7 @@ public class Ventana extends JFrame implements ActionListener {
                                           
                                           
                                           
-        BB = 1;     BBTLOAD();  CS=false;
+        BB = 1;     BBTLOAD();  CS=false;  BBTLOAD2(); BBTLOAD3();  //me olvide de poner el bbtload3 :c
           //NO QUIERO LAYOUT >:( que me desordene todo
         this.setSize(1000,600);
        
@@ -44,7 +47,7 @@ public class Ventana extends JFrame implements ActionListener {
         pc = new PanelCentro();       
         this.add(pc);   //quite el BorderLayout en segundo parametro       
         setLocationRelativeTo(null);
-        this.setVisible(true);           
+        this.setVisible(true);          
         
         tet = "";
         
@@ -99,7 +102,7 @@ public class Ventana extends JFrame implements ActionListener {
         BTcoca.setContentAreaFilled(false);
         BTsprite.setContentAreaFilled(false);
         BTfanta.setContentAreaFilled(false);
-        scVuelto.setContentAreaFilled(true);
+        scVuelto.setContentAreaFilled(false);
         
         Delay(1000);
         
@@ -136,11 +139,11 @@ public class Ventana extends JFrame implements ActionListener {
        
        
        
-       pantalla = new JPanel();
-                pantalla.setBounds(200,200,500,500);
+       
+                
                 
                                            //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
-                pantalla.setVisible(true);
+               
        
        
        
@@ -177,17 +180,18 @@ public class Ventana extends JFrame implements ActionListener {
          if(BB == 0){   //Button Block
          if(e.getSource() == BTcoca){
              System.out.println("coca"); 
-             pc.SodaCode = 1; pc.invitarComprador(); repaint(); CLINT();
+             pc.SodaCode = 1; pc.invitarComprador(); repaint(); CLINT3(); pc.com.animafinal(this.getGraphics()); CLINT(); createSceneCO();
         }
          
          if(e.getSource() == BTsprite){
              System.out.println("sprite");
-             pc.SodaCode = 2; pc.invitarComprador();  repaint();  pc.com.animafinal(this.getGraphics()); CLINT();
+             pc.SodaCode = 2; pc.invitarComprador();  repaint(); CLINT3(); pc.com.animafinal(this.getGraphics()); CLINT();
+             createSceneS();
         }
          
          if(e.getSource() == BTfanta){
              System.out.println("fanta");
-             pc.SodaCode = 3; pc.invitarComprador(); repaint() ; pc.com.animafinal(this.getGraphics());
+             pc.SodaCode = 3; pc.invitarComprador(); repaint() ; CLINT3(); pc.com.animafinal(this.getGraphics());
                       CLINT();  createScene();
 // createScene(); ;;;;;; 
         }
@@ -195,7 +199,7 @@ public class Ventana extends JFrame implements ActionListener {
          }
          
          if(e.getSource() == scVuelto && !pc.exp.Cajamonedas.noqueda()){
-             System.out.println("scVUELTO");
+             System.out.println("scVUELTO"); CLINT2();
              pc.com.sacarYcontar(pc.exp); repaint();
              
              
@@ -211,40 +215,140 @@ public class Ventana extends JFrame implements ActionListener {
     }
     
     
+ 
 
+
+ 
+ 
+ 
 //<editor-fold>
-
-    public void createScene(){
+int CSC = 0;
+    public void createScene(){    //crear las escenas sprite y cocacola
         //Platform.runLater(new Runnable(){
           //   @Override  
             //public void run(){
          
-               try{remove(pantalla); pantalla.removeAll();}catch(Exception arr){}finally{         
-               
+            // ERROR: ESTO NO SE PUEDE USAR 2 VECES. NOSE PORQUE PASA PERO CREO QUE ES PORQUE UN METODO DENTRO DE ESTA
+            //---FUNCION SOLAMENTE SE PUEDE LLAMAR 1 SOLA VEZ. ASIQUE BLOQUEARE ESTO A 1 SOLA VEZ. ME RINDO :( (6 horas gastadas)
+              if(CSC == 0){  
                 pantalla = new JPanel();
                 pantalla.setBounds(200,200,500,500);
                 
                                            //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
                 pantalla.setVisible(true);
                 
-                File file = new File("C:\\Users\\eparr\\Desktop\\fantav2.mp4");
+                File file = new File("src/img/fantav2.mp4");
                 MediaPlayer oracleVid = new MediaPlayer(new Media( file.toURI().toString() )    );
-                
                 MediaView ptll = new MediaView(oracleVid);
                 ptll.setMediaPlayer(oracleVid);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
-                TT.setScene(new Scene(new Group(ptll ) )      );
+                TT.setScene(new Scene(new Group(ptll ) )      );  
+              
+                
                pantalla.add(TT);//oracleVid.setVolume(0.7);
-                add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //SI SE BORRA SUENA PERO NO SE MUESTRA
-                              // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
-                                         //era pc.add(pantalla);
+                           // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
+                 
+                
+                //era pc.add(pantalla);
                 oracleVid.play(); 
-               }
+              }   
+               CSC ++; 
                 //que hice
          //  }   
        // }         //Ver que Elimine sus punteros luego
        // );
     }
+    
+    
+    
+    
+    
+    //SPRITE VIDEO
+    
+   
+    public void createSceneS(){    //crear las escenas sprite y cocacola
+        //Platform.runLater(new Runnable(){
+          //   @Override  
+            //public void run(){
+         
+            // ERROR: ESTO NO SE PUEDE USAR 2 VECES. NOSE PORQUE PASA PERO CREO QUE ES PORQUE UN METODO DENTRO DE ESTA
+            //---FUNCION SOLAMENTE SE PUEDE LLAMAR 1 SOLA VEZ. ASIQUE BLOQUEARE ESTO A 1 SOLA VEZ. ME RINDO :( (6 horas gastadas)
+              if(CSC == 0){   //TT.setScene(null);
+                pantallaS = new JPanel();
+                pantallaS.setBounds(200,200,500,500);
+                
+                                           //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
+                pantallaS.setVisible(true);
+                
+                File file = new File("src/img/spritev2.mp4");
+                MediaPlayer oracleVidS = new MediaPlayer(new Media( file.toURI().toString() )    );
+                MediaView ptll2 = new MediaView(oracleVidS);
+                ptll2.setMediaPlayer(oracleVidS);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
+                TTS.setScene(new Scene(new Group(ptll2 ) )      );  
+              
+                
+               pantallaS.add(TTS);//oracleVid.setVolume(0.7);
+               add(pantallaS); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //SI SE BORRA SUENA PERO NO SE MUESTRA
+                           // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
+                 
+                
+                //era pc.add(pantalla);
+                oracleVidS.play();
+              }   
+               CSC ++; 
+                //que hice
+         //  }   
+       // }         //Ver que Elimine sus punteros luego
+       // );
+    }
+    
+    
+    
+    
+    
+    //coca
+    
+    
+    public void createSceneCO(){    //crear las escenas sprite y cocacola
+        //Platform.runLater(new Runnable(){
+          //   @Override  
+            //public void run(){
+         
+            // ERROR: ESTO NO SE PUEDE USAR 2 VECES. NOSE PORQUE PASA PERO CREO QUE ES PORQUE UN METODO DENTRO DE ESTA
+            //---FUNCION SOLAMENTE SE PUEDE LLAMAR 1 SOLA VEZ. ASIQUE BLOQUEARE ESTO A 1 SOLA VEZ. ME RINDO :( (6 horas gastadas)
+              if(CSC == 0){   
+                pantallaCO = new JPanel();
+                pantallaCO.setBounds(200,200,500,500);
+                
+                                           //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
+                pantallaCO.setVisible(true);
+                
+                File file = new File("src/img/cocav.mp4");
+                MediaPlayer oracleVidCO = new MediaPlayer(new Media( file.toURI().toString() )    );
+                MediaView ptCO = new MediaView(oracleVidCO);
+                ptCO.setMediaPlayer(oracleVidCO);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
+                TTCO.setScene(new Scene(new Group(ptCO ) )      );  
+              
+                
+               pantallaCO.add(TTCO);//oracleVid.setVolume(0.7);
+               add(pantallaCO); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //SI SE BORRA SUENA PERO NO SE MUESTRA
+                           // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
+                 
+                
+                //era pc.add(pantalla);
+                oracleVidCO.play();
+              }   
+               CSC ++; 
+                //que hice
+         //  }   
+       // }         //Ver que Elimine sus punteros luego
+       // );
+    }
+    
+    
     
     
     
@@ -280,7 +384,7 @@ String pon;
     
     JFXPanel bac = new JFXPanel();
       
-        pon = new File("C:\\Users\\eparr\\Desktop\\compraf.wav").toURI().toString();
+        pon = new File("src/img/compraf.wav").toURI().toString();
         son = new Media(pon);
         
                 
@@ -288,7 +392,7 @@ String pon;
     
     
     }
-
+    
     private void CLINT(){
         try{check.play();}
         catch(Exception er){}
@@ -297,7 +401,63 @@ String pon;
         
         
     }
+    
+    
+    
+    
+    
+    String pon2;
+    Media son2;
+    MediaPlayer check2;
+    private void BBTLOAD2(){
+    
+    JFXPanel bac = new JFXPanel();
+      
+        pon2 = new File("src/img/dropcoin2.wav").toURI().toString();
+        son2 = new Media(pon2);
+        
+                
+        check2 = new MediaPlayer( son2 );
+    
+    
+    }
 
+    private void CLINT2(){
+        try{check2.play();}
+        catch(Exception er){}
+        
+        check2 = new MediaPlayer(son2);
+        
+        
+    }
+
+    
+    String pon3;
+    Media son3;
+    MediaPlayer check3;
+    private void BBTLOAD3(){
+    
+    JFXPanel bac = new JFXPanel();
+      
+        pon3 = new File("src/img/ChadWalking.wav").toURI().toString();   //se me olvido ponerle el audio :c
+        son3 = new Media(pon3);
+        
+                
+        check3 = new MediaPlayer( son3 );
+    
+    
+    }
+    
+    private void CLINT3(){
+        try{check3.play();}
+        catch(Exception er){}
+        
+        check3 = new MediaPlayer(son3);
+        
+        
+    }
+    
+    
 
 public static void Delay(long millis){
         long ini = System.currentTimeMillis();

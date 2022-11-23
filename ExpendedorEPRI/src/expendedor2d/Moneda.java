@@ -81,6 +81,9 @@ class Moneda500 extends Moneda{
     @Override
     public void paint(Graphics g){            //QUITE TODOS LOS X E Y ERAN REDUNDANTES
         
+        
+         ImageIcon mon500 = new ImageIcon("src/img/500pesosvolteada.png");  
+        g.drawImage(mon500.getImage(),super.x ,super.y ,100,100,this); 
     }
 }
 
@@ -98,6 +101,9 @@ class Moneda1000 extends Moneda{
     @Override
     public void paint(Graphics g){
         
+        
+         ImageIcon mon1000 = new ImageIcon("src/img/moneda1000.png");  
+        g.drawImage(mon1000.getImage(),super.x ,super.y ,100,100,this); 
     }
 }
 class Moneda1500 extends Moneda{
@@ -114,5 +120,8 @@ class Moneda1500 extends Moneda{
     @Override
     public void paint(Graphics g){
         
+        
+         ImageIcon mon1500 = new ImageIcon("src/img/alienf.png");  
+        g.drawImage(mon1500.getImage(),super.x ,super.y ,100,100,this); 
     }
 }

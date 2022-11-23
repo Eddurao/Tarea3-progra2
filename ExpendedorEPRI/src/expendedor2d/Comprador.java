@@ -11,14 +11,18 @@ import javax.swing.JPanel;
 
 public class Comprador extends JPanel {
     private int vuelto;
-    private String sabor;                 //La rubrica decia ocupar solo 2 variables
+    public String sabor;                 //La rubrica decia ocupar solo 2 variables
                   //Pero no puedo no poner la referencia a la maquina ---> se usa en sacarYcontar
     
     
     public Comprador(Moneda mo,int numbeb,Expendedor Exp) {
         vuelto = 0;
-        Exp.comprarBebida(mo,numbeb);
+        Bebida mano = Exp.comprarBebida(mo,numbeb);
          
+        if( mano.beber() == "Sprite" ){sabor = "MM exquisita Sprite";}
+        if( mano.beber() == "CocaCola" ){sabor = "MM refrescante CocaCola";}
+        if( mano.beber() == "Fanta" ){sabor = "MM deliciosa Fanta";}
+        if( mano == null ){sabor = "No pude comprar, tengo sed  D:";}
         
                        //Aqui ira el delay
         
@@ -31,8 +35,8 @@ public class Comprador extends JPanel {
     public void paint(Graphics g){
         super.paint(g);
         g.setColor(Color.WHITE);
-        g.drawString("Vuelto:$"+vuelto,850,120); 
-        
+        g.drawString("Vuelto:$"+vuelto,850,130); 
+       g.drawString(sabor,800,180);
         
         
 
@@ -149,7 +153,17 @@ public class Comprador extends JPanel {
        Moneda mia = Exp.Cajamonedas.sacarMoneda();
        
        //while(mia != null){ 
-        if(mia != null)vuelto += 100;
+        if(mia != null){
+          if(mia.getValor() == 100)  vuelto += 100;
+          if(mia.getValor() == 500)  vuelto += 500;
+          if(mia.getValor() == 1000)  vuelto += 1000;
+          if(mia.getValor() == 1500)  vuelto += 1500;
+               
+        
+        
+        
+        
+        }
         //mia = Exp.Cajamonedas.sacarMoneda();    
     //}
     
