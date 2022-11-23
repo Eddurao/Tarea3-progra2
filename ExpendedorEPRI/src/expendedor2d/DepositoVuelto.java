@@ -19,7 +19,7 @@ public class DepositoVuelto {
     
     public void paint(Graphics g){      //no funciona
         
-        System.out.println("SE LLAMO");
+        
        for(int i=0; i<ALvuelto.size() ; i++  ){
        (ALvuelto.get(i)).paint(g);
            

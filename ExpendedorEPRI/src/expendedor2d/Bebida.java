@@ -13,7 +13,8 @@ abstract public class Bebida extends JPanel {
     
     public Bebida(int x, int y){
         this.x = x; this.y = y;
-        this.numSerie = 1;    
+        this.numSerie = this.hashCode(); 
+        System.out.println("GENERATED BEBIDA:"+numSerie);
     }
     public int getSerie(){
         return this.numSerie;

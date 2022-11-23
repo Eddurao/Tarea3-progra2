@@ -8,6 +8,8 @@ abstract class Moneda extends JPanel {        //Me parece que no tiene que ser t
     public int numSerie,x,y;       // QUE ES EL NUMSERIE !!!! NO LE DA VALOR A NUMSERIE
     public Moneda( int x,int y) {
     this.x = x; this.y = y;
+    numSerie = hashCode();
+        System.out.println("GENERATED MONEDA:"+numSerie );
     
     }                                //ES ABSTARCTO.. PERO AQUI DEFINIR EL PUNTERO VALOR A DECIMAL
     public int getSerie(){          //TQV con el CODIGO HASH ????

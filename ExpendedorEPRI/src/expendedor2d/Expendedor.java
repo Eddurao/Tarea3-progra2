@@ -65,17 +65,17 @@ public class Expendedor extends JPanel{
         Cajamonedas.Devolucion(moneda); return null;}
         try{verprecio();                   //Verificadores 
         }catch(PagoInsuficienteException aa){JOptionPane.showMessageDialog(null,aa); 
-        Cajamonedas.Devolucion(moneda); return null;}
+        Cajamonedas.Devolucion(moneda); return null; }
         try{vermoneda();
-        }catch(PagoIncorrectoException aaa){JOptionPane.showMessageDialog(null,aaa,"ERROR",5,null);
-        return null;}
+        }catch(PagoIncorrectoException aaa){JOptionPane.showMessageDialog(null,aaa,"ERROR",5,null); return null;
+        }
         //si todo esta correcto y la moneda vale mas que el precio o igual, pasariamos acá
         int deboNmoneas = (moneda.getValor() - precioBebidas) / 100;
         for(int i=0; i<deboNmoneas;i++){Cajamonedas.BotarMoneda();}
         
         if(code == 1)return Coca.getBebida();
         if(code == 2)return Sprite.getBebida();
-        if(code == 3)return Fanta.getBebida();
+        if(code == 3)return Fanta.getBebida();        
         
         return Fanta.getBebida(); //Fanta de regalo si crashea (no pasara)    
     }

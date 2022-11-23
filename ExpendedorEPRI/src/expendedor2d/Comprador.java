@@ -16,13 +16,13 @@ public class Comprador extends JPanel {
     
     
     public Comprador(Moneda mo,int numbeb,Expendedor Exp) {
-        vuelto = 0;
-        Bebida mano = Exp.comprarBebida(mo,numbeb);
+        vuelto = 0; Bebida mano = null;
+        try{mano = Exp.comprarBebida(mo,numbeb);
          
         if( mano.beber() == "Sprite" ){sabor = "MM exquisita Sprite";}
         if( mano.beber() == "CocaCola" ){sabor = "MM refrescante CocaCola";}
         if( mano.beber() == "Fanta" ){sabor = "MM deliciosa Fanta";}
-        if( mano == null ){sabor = "No pude comprar, tengo sed  D:";}
+       }catch(Exception NoHayBebidaException){sabor = "No pude comprar, tengo sed  D:";}
         
                        //Aqui ira el delay
         

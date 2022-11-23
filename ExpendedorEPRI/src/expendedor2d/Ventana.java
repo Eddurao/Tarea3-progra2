@@ -25,12 +25,12 @@ public class Ventana extends JFrame implements ActionListener {
     JButton BTsprite;
     JButton BTfanta;
     JButton scVuelto;
+    JButton BTllena;
     String tet;
     PanelCentro pc;
     int BB;
     boolean CS;         private final JFXPanel TT = new JFXPanel(); JPanel pantalla;   
-                        private final JFXPanel TTS = new JFXPanel(); JPanel pantallaS; 
-                        private final JFXPanel TTCO = new JFXPanel(); JPanel pantallaCO; 
+                         
     public Ventana(){
                                           // TT= new JFXPanel(); //en final poner
                                           
@@ -60,6 +60,7 @@ public class Ventana extends JFrame implements ActionListener {
         BTsprite = new JButton();
         BTfanta = new JButton();
         scVuelto = new JButton();
+        BTllena = new JButton();
         
         BT100.setBounds(540,0,115,115);
         BT500.setBounds(640,0,115,115);
@@ -70,6 +71,7 @@ public class Ventana extends JFrame implements ActionListener {
         BTsprite.setBounds(508,475,239,115);
         BTfanta.setBounds(750,475,239,115);
         scVuelto.setBounds(146,475,115,115);
+        BTllena.setBounds(70,30,250,400);
         //BT100.setRolloverIcon("icono");
         
         
@@ -81,6 +83,7 @@ public class Ventana extends JFrame implements ActionListener {
         add(BTsprite);
         add(BTfanta);
         add(scVuelto);
+        add(BTllena);
         add(BTnull);
         
         
@@ -93,6 +96,7 @@ public class Ventana extends JFrame implements ActionListener {
         BTsprite.addActionListener(this);
         BTfanta.addActionListener(this);
         scVuelto.addActionListener(this);
+        BTllena.addActionListener(this);
         
         BT100.setContentAreaFilled(false);
         BT500.setContentAreaFilled(false);
@@ -103,6 +107,7 @@ public class Ventana extends JFrame implements ActionListener {
         BTsprite.setContentAreaFilled(false);
         BTfanta.setContentAreaFilled(false);
         scVuelto.setContentAreaFilled(false);
+        BTllena.setContentAreaFilled(false);
         
         Delay(1000);
         
@@ -154,22 +159,22 @@ public class Ventana extends JFrame implements ActionListener {
         
       
         if(e.getSource() == BT100){        //block button
-            System.out.println("funcionafeliz"); 
+            System.out.println("100 Seleccionado               funcionafeliz"); 
             pc.MainCoin = new Moneda100(0,0); BB = 0; pc.BB = 0; repaint();
         }
         
          if(e.getSource() == BT500){
-            System.out.println("bacan");
+            System.out.println("500 Seleccionado                bacan");
             pc.MainCoin = new Moneda500(0,0); BB = 0; pc.BB = 0; repaint();
         }
         
          if(e.getSource() == BT1000){
-            System.out.println("putin");
+            System.out.println("1000 Seleccionado                putin");
             pc.MainCoin = new Moneda1000(0,0); BB = 0; pc.BB = 0; repaint();
         }
     
          if(e.getSource() == BT1500){
-            System.out.println("obama");   
+            System.out.println("1500 Seleccionado                obama");   
             pc.MainCoin = new Moneda1500(0,0); BB = 0; pc.BB = 0; repaint();
         }  
          
@@ -206,7 +211,23 @@ public class Ventana extends JFrame implements ActionListener {
              
          }
          
+         if(e.getSource() == BTllena){
+             System.out.println("RELLENANDO EXPENDEDORA CON LAS SIGUIENTES BEBIDAS:");
+             pc.exp.Coca.rellenar();
+             pc.exp.Fanta.rellenar();
+             pc.exp.Sprite.rellenar();
+             System.out.println("EXPENDEDORA HA SIDO RELLENADA CON EXITO!");
+         }
+             
+             
+             
+            
          
+             
+             
+             
+             
+        
          
          
          
@@ -245,7 +266,7 @@ int CSC = 0;
               
                 
                pantalla.add(TT);//oracleVid.setVolume(0.7);
-               add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               pc.add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //SI SE BORRA SUENA PERO NO SE MUESTRA
                            // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
                  
@@ -275,27 +296,27 @@ int CSC = 0;
             // ERROR: ESTO NO SE PUEDE USAR 2 VECES. NOSE PORQUE PASA PERO CREO QUE ES PORQUE UN METODO DENTRO DE ESTA
             //---FUNCION SOLAMENTE SE PUEDE LLAMAR 1 SOLA VEZ. ASIQUE BLOQUEARE ESTO A 1 SOLA VEZ. ME RINDO :( (6 horas gastadas)
               if(CSC == 0){   //TT.setScene(null);
-                pantallaS = new JPanel();
-                pantallaS.setBounds(200,200,500,500);
+                pantalla = new JPanel();
+                pantalla.setBounds(200,200,500,500);
                 
                                            //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
-                pantallaS.setVisible(true);
+                pantalla.setVisible(true);
                 
                 File file = new File("src/img/spritev2.mp4");
-                MediaPlayer oracleVidS = new MediaPlayer(new Media( file.toURI().toString() )    );
-                MediaView ptll2 = new MediaView(oracleVidS);
-                ptll2.setMediaPlayer(oracleVidS);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
-                TTS.setScene(new Scene(new Group(ptll2 ) )      );  
+                MediaPlayer oracleVid = new MediaPlayer(new Media( file.toURI().toString() )    );
+                MediaView ptll = new MediaView(oracleVid);
+                ptll.setMediaPlayer(oracleVid);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
+                TT.setScene(new Scene(new Group(ptll ) )      );  
               
                 
-               pantallaS.add(TTS);//oracleVid.setVolume(0.7);
-               add(pantallaS); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               pantalla.add(TT);//oracleVid.setVolume(0.7);
+               add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //SI SE BORRA SUENA PERO NO SE MUESTRA
                            // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
                  
                 
                 //era pc.add(pantalla);
-                oracleVidS.play();
+                oracleVid.play();
               }   
                CSC ++; 
                 //que hice
@@ -319,27 +340,27 @@ int CSC = 0;
             // ERROR: ESTO NO SE PUEDE USAR 2 VECES. NOSE PORQUE PASA PERO CREO QUE ES PORQUE UN METODO DENTRO DE ESTA
             //---FUNCION SOLAMENTE SE PUEDE LLAMAR 1 SOLA VEZ. ASIQUE BLOQUEARE ESTO A 1 SOLA VEZ. ME RINDO :( (6 horas gastadas)
               if(CSC == 0){   
-                pantallaCO = new JPanel();
-                pantallaCO.setBounds(200,200,500,500);
+                pantalla = new JPanel();
+                pantalla.setBounds(200,200,500,500);
                 
                                            //!!! DEF EN CLASS private final JFXPanel TT = new JFXPanel(); JPanel pantalla;
-                pantallaCO.setVisible(true);
+                pantalla.setVisible(true);
                 
                 File file = new File("src/img/cocav.mp4");
-                MediaPlayer oracleVidCO = new MediaPlayer(new Media( file.toURI().toString() )    );
-                MediaView ptCO = new MediaView(oracleVidCO);
-                ptCO.setMediaPlayer(oracleVidCO);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
-                TTCO.setScene(new Scene(new Group(ptCO ) )      );  
+                MediaPlayer oracleVid = new MediaPlayer(new Media( file.toURI().toString() )    );
+                MediaView ptll = new MediaView(oracleVid);
+                ptll.setMediaPlayer(oracleVid);//oracleVid.setCycleCount (MediaPlayer.INDEFINITE); //Repetir el video
+                TT.setScene(new Scene(new Group(ptll ) )      );  
               
                 
-               pantallaCO.add(TTCO);//oracleVid.setVolume(0.7);
-               add(pantallaCO); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+               pantalla.add(TT);//oracleVid.setVolume(0.7);
+               pc.add(pantalla); //<< AQUI ESTÁ EL ´PROBLEMA !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 //SI SE BORRA SUENA PERO NO SE MUESTRA
                            // sospecho que este no se puede llamar a cada rato //pc le da mas claridad y no sobre ridea pc.add(pantalla);   //funciono pc.
                  
                 
                 //era pc.add(pantalla);
-                oracleVidCO.play();
+                oracleVid.play();
               }   
                CSC ++; 
                 //que hice
